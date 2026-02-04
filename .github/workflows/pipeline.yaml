@@ -12,8 +12,14 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Login to DockerHub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
     - name: Docker Build
-      run: docker build -t daniel:1.5 . 
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/blabladaniel:1.0 . 
  
     - name: List Images
       run: docker images
+
+    - name: Docker Push
+      run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/blabladaniel:1.0
