@@ -10,7 +10,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      run: actions/checkout@v4
+      uses: actions/checkout@v4
 
     - name: Docker Build
       run: docker build -t daniel:1.5 . 
