@@ -1,0 +1,19 @@
+name: Hello
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  my-hello-job:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout code
+      run: actions/checkout@v4
+
+    - name: Docker Build
+      run: docker build -t daniel:1.5 . 
+ 
+    - name: List Images
+      run: docker images
